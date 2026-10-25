@@ -45,7 +45,7 @@ A structured, visual guide to Java OOP fundamentals — from classes and objects
 
 ## 🧭 Characteristics of OOP
 
-![Characteristics of Object-Oriented Programming](images/image.png)
+![Characteristics of Object-Oriented Programming](Images/image.png)
 
 *Diagram: characteristics of OOP.*
 
@@ -61,7 +61,7 @@ A **class** in Java is a blueprint or template used to create objects. It define
 
 **Example:** `Car` is a class; BMW, Mercedes, and Audi can be represented as individual car objects.
 
-![Class](images/image-1.png)
+![Class](Images/image-1.png)
 
 ---
 
@@ -77,7 +77,86 @@ An **object** is an instance of a class. It has state, behavior, and identity.
 
 **Example:** `Dog` is a class, while `Tommy` can be an object created from it.
 
-![Object](images/image-2.png)
+![Object](Images/image-2.png)
+
+Syntax:
+
+    class Car {
+
+    String brand;
+    int speed;
+
+    void drive() {
+        System.out.println(brand + " is driving");
+        }
+    }
+    
+    public class Main {
+        public static void main(String[] args) {
+
+            // 1. Object creation
+            Car car1 = new Car();  
+
+            // 2. Assign values to its fields
+            car1.brand = "BMW";
+            car1.speed = 120;
+
+            // 3. Call its method
+            car1.drive();
+            System.out.println(car1.speed);
+        }
+    }
+
+
+Syntax to remember:
+
+    ClassName objectName = new ClassName();
+    objectName.fieldName = value;
+    objectName.methodName();
+
+
+Output:
+
+    BMW is driving
+    120
+
+
+
+## ```this``` and ``super``
+
+These are important supporting concepts for OOP.
+
+```this``` — current object
+
+    class Student {
+        String name;
+
+        Student(String name) {
+            this.name = name;
+        }
+    }
+
+
+>```this.name``` refers to the object's field; ```name``` refers to the constructor parameter.
+
+```super``` — parent class
+
+    class Animal {
+        void eat() {
+            System.out.println("Eating");
+        }
+    }
+
+    class Dog extends Animal {
+        @Override
+        void eat() {
+            super.eat();
+            System.out.println("Dog is eating");
+        }
+    }
+
+
+```super.eat()``` calls the parent class implementation.
 
 ---
 
@@ -96,7 +175,7 @@ A **constructor** is a special class member invoked when an object is created. I
 
 ### Types of constructors
 
-![Constructors in Java](images/image-3.png)
+![Constructors in Java](Images/image-3.png)
 
 | Type | Description |
 |---|---|
@@ -108,6 +187,37 @@ A **constructor** is a special class member invoked when an object is created. I
 
 > **Remember:** A compiler-provided default constructor and a programmer-written no-argument constructor are not the same thing.
 
+Syntax: 
+    
+    class Student {
+
+        String name;
+        int rollNumber;
+
+        // No-argument constructor
+        Student() {
+            name = "Unknown";
+            rollNumber = 0;
+        }
+
+        // Parameterized constructor
+        Student(String name, int rollNumber) {
+            this.name = name;
+            this.rollNumber = rollNumber;
+        }
+    }
+
+    public class Main {
+        public static void main(String[] args) {
+            Student s1 = new Student();
+            Student s2 = new Student("Rudraksha", 101);
+
+            System.out.println(s1.name);
+            System.out.println(s2.name);
+        }
+    }
+
+>***Important***: ***this.name = name*** assigns the parameter to the object's field. A copy constructor is also possible in Java, but you must define it yourself.
 ---
 
 ## 🎭 4. Abstraction
@@ -122,14 +232,78 @@ A **constructor** is a special class member invoked when an object is created. I
 
 **Example:** An ATM provides operations such as withdrawing cash while hiding the internal processing steps.
 
-### How Java supports abstraction
 
+### How Java supports abstraction
+![alt text](Images/image-4.png)
 - **Abstract classes** provide a shared base that can contain abstract and implemented methods.
+
+Syntax:
+
+    abstract class Shape {
+        abstract double area();
+
+        void describe() {
+            System.out.println("I am a shape");
+        }
+    }
+
+    class Circle extends Shape {
+        double radius;
+
+        Circle(double radius) {
+            this.radius = radius;
+        }
+
+        @Override
+        double area() {
+            return Math.PI * radius * radius;
+        }
+    }
+
+    public class Main {
+        public static void main(String[] args) {
+            Shape shape = new Circle(5);
+
+            shape.describe();
+            System.out.println(shape.area());
+        }
+    }
+
+
 - **Interfaces** define a contract that implementing classes agree to follow.
 
-![alt text](images/image-4.png)
+Syntax:
 
-![alt text](images/image-5.png)
+    interface Drawable {
+        void draw();
+    }
+
+    class Rectangle implements Drawable {
+        @Override
+        public void draw() {
+            System.out.println("Drawing rectangle");
+        }
+    }
+
+    public class Main {
+        public static void main(String[] args) {
+            Drawable item = new Rectangle();
+            item.draw();
+        }
+    }
+
+Syntax to remember:
+
+    abstract class A { }
+    class B extends A { }
+
+    interface X { }
+    class C implements X { }
+
+
+>An interface can contain default, static, and private methods as well as abstract method declarations. It is therefore not strictly limited to 100% abstraction.
+
+![alt text](Images/image-5.png)
 
 > **Note:** Interfaces are not strictly limited to “100% abstraction”; modern Java interfaces can also contain `default`, `static`, and private methods.
 
@@ -146,10 +320,45 @@ A **constructor** is a special class member invoked when an object is created. I
 - Use getters and setters when appropriate—not automatically for every field.
 - Validate changes so an object remains in a valid state.
 
-![alt text](images/image-6.png)
+![alt text](Images/image-6.png)
 
 **Example:** A `BankAccount` should not let outside code directly set its balance to an invalid value. Instead, operations such as `deposit()` and `withdraw()` can validate each change.
 
+Syntax: 
+
+    class BankAccount {
+        private double balance;
+
+        public BankAccount(double initialBalance) {
+            if (initialBalance < 0) {
+                throw new IllegalArgumentException("Invalid balance");
+            }
+            balance = initialBalance;
+        }
+
+        public double getBalance() {
+            return balance;
+        }
+
+        public void deposit(double amount) {
+            if (amount > 0) {
+                balance += amount;
+            }
+        }
+    }
+
+    public class Main {
+        public static void main(String[] args) {
+            BankAccount account = new BankAccount(1000);
+
+            account.deposit(500);
+            System.out.println(account.getBalance());
+        }
+    }
+
+>***Output***: 1500.0
+
+>***Syntax to remember***: private fields + public methods that control access. Don't provide a setter automatically if it would allow invalid state.
 ---
 
 ## 🔗 6. Association, Aggregation and Composition
@@ -162,21 +371,131 @@ A **constructor** is a special class member invoked when an object is created. I
 - Does not inherently imply ownership.
 - Related objects can have independent lifecycles.
 
+Syntax:
+
+    class Teacher {
+        String name;
+
+        Teacher(String name) {
+            this.name = name;
+        }
+    }
+
+    class Student {
+        String name;
+
+        Student(String name) {
+            this.name = name;
+        }
+
+        void learnFrom(Teacher teacher) {
+            System.out.println(
+                name + " learns from " + teacher.name
+            );
+        }
+    }
+
+    public class Main {
+        public static void main(String[] args) {
+            Teacher teacher = new Teacher("Anita");
+            Student student = new Student("Ravi");
+
+            student.learnFrom(teacher);
+        }
+    }
+
 ### Aggregation — weak “has-a” relationship
 
 Aggregation is a relationship in which one object refers to or groups other objects that can exist independently.
 
+Syntax:
+ 
+    import java.util.List;
+
+    class Employee {
+        String name;
+
+        Employee(String name) {
+            this.name = name;
+        }
+    }
+
+    class Company {
+        String name;
+        List<Employee> employees;
+
+        Company(String name, List<Employee> employees) {
+            this.name = name;
+            this.employees = employees;
+        }
+
+        void showEmployees() {
+            for (Employee employee : employees) {
+                System.out.println(employee.name);
+            }
+        }
+    }
+
+    public class Main {
+        public static void main(String[] args) {
+            Employee e1 = new Employee("Aman");
+            Employee e2 = new Employee("Priya");
+
+            Company company =
+                new Company("TechCorp", List.of(e1, e2));
+
+            company.showEmployees();
+        }
+    }
 **Example:** A company has employees, but an employee can continue to exist if the company ceases to exist.
 
-![alt text](images/image-7.png)
+![alt text](Images/image-7.png)
 
 ### Composition — strong ownership relationship
 
 Composition represents stronger ownership: the contained object's lifecycle is managed as part of the owning object in the design.
 
+Syntax: 
+
+    import java.util.ArrayList;
+    import java.util.List;
+
+    class Room {
+        private String name;
+
+        Room(String name) {
+            this.name = name;
+        }
+
+        String getName() {
+            return name;
+        }
+    }
+
+    class House {
+        private final List<Room> rooms = new ArrayList<>();
+
+        House() {
+            rooms.add(new Room("Bedroom"));
+            rooms.add(new Room("Kitchen"));
+        }
+
+        void showRooms() {
+            for (Room room : rooms) {
+                System.out.println(room.getName());
+            }
+        }
+    }
+
+    public class Main {
+        public static void main(String[] args) {
+            House house = new House();
+            house.showRooms();
+        }
+    }
 **Example:** A house contains rooms as its constituent parts.
 
-![alt text](images/image-8.png)
+![alt text](Images/image-8.png)
 
 | Relationship | Ownership | Lifecycle |
 |---|---|---|
@@ -197,11 +516,57 @@ Composition represents stronger ownership: the contained object's lifecycle is m
 
 **Example:** `Dog`, `Cat`, and `Cow` can extend an `Animal` base class.
 
-![alt text](images/image-9.png)
+![alt text](Images/image-9.png)
 
+Syntax: 
+
+    class Animal {
+        void eat() {
+            System.out.println("Animal is eating");
+        }
+    }
+
+    class Dog extends Animal {
+        void bark() {
+            System.out.println("Dog is barking");
+        }
+    }
+
+    public class Main {
+        public static void main(String[] args) {
+            Dog dog = new Dog();
+
+            dog.eat();   // Inherited method
+            dog.bark();  // Dog's own method
+        }
+    }
+
+Output:
+
+    Animal is eating
+    Dog is barking
+
+
+Syntax to remember:
+
+    class Child extends Parent {
+        // Additional fields and methods
+    }
+
+
+Multilevel and hierarchical inheritance
+
+        class Animal { }
+        class Mammal extends Animal { }  // Multilevel begins
+        class Dog extends Mammal { }
+
+        class Cat extends Animal { }     // Hierarchical branch
+
+
+>Java classes cannot extend multiple classes, but a class can implement multiple interfaces.
 ### Types of inheritance
 
-![alt text](images/image-10.png)
+![alt text](Images/image-10.png)
 
 - **Single:** one subclass inherits from one superclass.
 - **Multilevel:** inheritance forms a chain of classes.
@@ -219,21 +584,102 @@ Composition represents stronger ownership: the contained object's lifecycle is m
 
 ### Types of polymorphism
 
-![alt text](images/image-11.png)
+![alt text](Images/image-11.png)
 
 ### Compile-time polymorphism — method overloading
 
 Multiple methods share a name but have different parameter lists. The compiler determines which overload matches the call.
 
+Syntax:
+
+    class Calculator {
+        int add(int a, int b) {
+            return a + b;
+        }
+
+        double add(double a, double b) {
+            return a + b;
+        }
+
+        int add(int a, int b, int c) {
+            return a + b + c;
+        }
+    }
+
+Usage:
+
+    Calculator calc = new Calculator();
+
+    System.out.println(calc.add(2, 3));        // 5
+    System.out.println(calc.add(2.5, 3.5));    // 6.0
+    System.out.println(calc.add(1, 2, 3));     // 6
+
 ### Runtime polymorphism — method overriding
 
 A subclass provides its own implementation of an inherited instance method. The implementation invoked depends on the actual runtime object.
 
+Syntax:
+
+    class Animal {
+        void speak() {
+            System.out.println("Animal sound");
+        }
+    }
+
+    class Dog extends Animal {
+        @Override
+        void speak() {
+            System.out.println("Bark");
+        }
+    }
+
+    class Cat extends Animal {
+        @Override
+        void speak() {
+            System.out.println("Meow");
+        }
+    }
+
+    public class Main {
+        public static void main(String[] args) {
+            Animal a1 = new Dog();
+            Animal a2 = new Cat();
+
+            a1.speak();
+            a2.speak();
+        }
+    }
+
+Output:
+
+    Bark
+    Meow
+
+
+>***Key distinction***: overloading is resolved from the method signature at compile time; overridden instance-method dispatch depends on the runtime object's class.
+
 **Example:** Calling `speak()` on different `Animal` implementations could produce `Bark`, `Meow`, or `Moo`.
 
-![alt text](images/image-12.png)
+![alt text](Images/image-12.png)
 
 ---
+
+## ***11. Access modifiers***
+| ***Modifier*** |  ***Access*** |
+|---|---|
+| public |	Accessible wherever the class/member is visible |
+| private	| Within the declaring class
+| protected	| Same package and subclasses, subject to Java access rules |
+| No modifier |	Same package|
+
+Example:
+
+    class Example {
+        public int a = 10;
+        private int b = 20;
+        protected int c = 30;
+        int d = 40; // package-private
+    }
 
 ## ⚖️ OOP vs Procedural Programming
 
