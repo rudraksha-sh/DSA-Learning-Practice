@@ -45,7 +45,7 @@ A structured, visual guide to Java OOP fundamentals — from classes and objects
 
 ## 🧭 Characteristics of OOP
 
-![Characteristics of Object-Oriented Programming](DSA_Basics/images/image.png)
+![Characteristics of Object-Oriented Programming](Images/image.png)
 
 *Diagram: characteristics of OOP.*
 
@@ -61,7 +61,7 @@ A **class** in Java is a blueprint or template used to create objects. It define
 
 **Example:** `Car` is a class; BMW, Mercedes, and Audi can be represented as individual car objects.
 
-![Class](images/image-1.png)
+![Class](Images/image-1.png)
 
 ---
 
@@ -77,7 +77,7 @@ An **object** is an instance of a class. It has state, behavior, and identity.
 
 **Example:** `Dog` is a class, while `Tommy` can be an object created from it.
 
-![Object](images/image-2.png)
+![Object](Images/image-2.png)
 
 ---
 
@@ -96,7 +96,7 @@ A **constructor** is a special class member invoked when an object is created. I
 
 ### Types of constructors
 
-![Constructors in Java](images/image-3.png)
+![Constructors in Java](Images/image-3.png)
 
 | Type | Description |
 |---|---|
@@ -127,9 +127,9 @@ A **constructor** is a special class member invoked when an object is created. I
 - **Abstract classes** provide a shared base that can contain abstract and implemented methods.
 - **Interfaces** define a contract that implementing classes agree to follow.
 
-![alt text](images/image-4.png)
+![alt text](Images/image-4.png)
 
-![alt text](images/image-5.png)
+![alt text](Images/image-5.png)
 
 > **Note:** Interfaces are not strictly limited to “100% abstraction”; modern Java interfaces can also contain `default`, `static`, and private methods.
 
@@ -146,7 +146,7 @@ A **constructor** is a special class member invoked when an object is created. I
 - Use getters and setters when appropriate—not automatically for every field.
 - Validate changes so an object remains in a valid state.
 
-![alt text](images/image-6.png)
+![alt text](Images/image-6.png)
 
 **Example:** A `BankAccount` should not let outside code directly set its balance to an invalid value. Instead, operations such as `deposit()` and `withdraw()` can validate each change.
 
@@ -168,7 +168,7 @@ Aggregation is a relationship in which one object refers to or groups other obje
 
 **Example:** A company has employees, but an employee can continue to exist if the company ceases to exist.
 
-![alt text](images/image-7.png)
+![alt text](Images/image-7.png)
 
 ### Composition — strong ownership relationship
 
@@ -176,7 +176,7 @@ Composition represents stronger ownership: the contained object's lifecycle is m
 
 **Example:** A house contains rooms as its constituent parts.
 
-![alt text](images/image-8.png)
+![alt text](Images/image-8.png)
 
 | Relationship | Ownership | Lifecycle |
 |---|---|---|
@@ -197,11 +197,11 @@ Composition represents stronger ownership: the contained object's lifecycle is m
 
 **Example:** `Dog`, `Cat`, and `Cow` can extend an `Animal` base class.
 
-![alt text](images/image-9.png)
+![alt text](Images/image-9.png)
 
 ### Types of inheritance
 
-![alt text](images/image-10.png)
+![alt text](Images/image-10.png)
 
 - **Single:** one subclass inherits from one superclass.
 - **Multilevel:** inheritance forms a chain of classes.
@@ -219,7 +219,7 @@ Composition represents stronger ownership: the contained object's lifecycle is m
 
 ### Types of polymorphism
 
-![alt text](images/image-11.png)
+![alt text](Images/image-11.png)
 
 ### Compile-time polymorphism — method overloading
 
@@ -231,7 +231,7 @@ A subclass provides its own implementation of an inherited instance method. The 
 
 **Example:** Calling `speak()` on different `Animal` implementations could produce `Bark`, `Meow`, or `Moo`.
 
-![alt text](images/image-12.png)
+![alt text](Images/image-12.png)
 
 ---
 
