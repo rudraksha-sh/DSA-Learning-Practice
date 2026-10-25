@@ -77,7 +77,7 @@ An **object** is an instance of a class. It has state, behavior, and identity.
 
 **Example:** `Dog` is a class, while `Tommy` can be an object created from it.
 
-![Object](images/image-2.png)
+![Object](Images/image-2.png)
 
 ---
 
@@ -193,7 +193,7 @@ Syntax:
 
 - **Interfaces** define a contract that implementing classes agree to follow.
 
-![alt text](images/image-4.png)
+![alt text](Images/image-4.png)
 
 ![alt text](Images/image-5.png)
 
