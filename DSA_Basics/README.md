@@ -77,86 +77,7 @@ An **object** is an instance of a class. It has state, behavior, and identity.
 
 **Example:** `Dog` is a class, while `Tommy` can be an object created from it.
 
-![Object](Images/image-2.png)
-
-Syntax:
-
-    class Car {
-
-    String brand;
-    int speed;
-
-    void drive() {
-        System.out.println(brand + " is driving");
-        }
-    }
-    
-    public class Main {
-        public static void main(String[] args) {
-
-            // 1. Object creation
-            Car car1 = new Car();  
-
-            // 2. Assign values to its fields
-            car1.brand = "BMW";
-            car1.speed = 120;
-
-            // 3. Call its method
-            car1.drive();
-            System.out.println(car1.speed);
-        }
-    }
-
-
-Syntax to remember:
-
-    ClassName objectName = new ClassName();
-    objectName.fieldName = value;
-    objectName.methodName();
-
-
-Output:
-
-    BMW is driving
-    120
-
-
-
-## ```this``` and ``super``
-
-These are important supporting concepts for OOP.
-
-```this``` — current object
-
-    class Student {
-        String name;
-
-        Student(String name) {
-            this.name = name;
-        }
-    }
-
-
->```this.name``` refers to the object's field; ```name``` refers to the constructor parameter.
-
-```super``` — parent class
-
-    class Animal {
-        void eat() {
-            System.out.println("Eating");
-        }
-    }
-
-    class Dog extends Animal {
-        @Override
-        void eat() {
-            super.eat();
-            System.out.println("Dog is eating");
-        }
-    }
-
-
-```super.eat()``` calls the parent class implementation.
+![Object](images/image-2.png)
 
 ---
 
@@ -272,36 +193,7 @@ Syntax:
 
 - **Interfaces** define a contract that implementing classes agree to follow.
 
-Syntax:
-
-    interface Drawable {
-        void draw();
-    }
-
-    class Rectangle implements Drawable {
-        @Override
-        public void draw() {
-            System.out.println("Drawing rectangle");
-        }
-    }
-
-    public class Main {
-        public static void main(String[] args) {
-            Drawable item = new Rectangle();
-            item.draw();
-        }
-    }
-
-Syntax to remember:
-
-    abstract class A { }
-    class B extends A { }
-
-    interface X { }
-    class C implements X { }
-
-
->An interface can contain default, static, and private methods as well as abstract method declarations. It is therefore not strictly limited to 100% abstraction.
+![alt text](images/image-4.png)
 
 ![alt text](Images/image-5.png)
 
