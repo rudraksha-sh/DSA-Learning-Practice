@@ -45,7 +45,7 @@ A structured, visual guide to Java OOP fundamentals — from classes and objects
 
 ## 🧭 Characteristics of OOP
 
-![Characteristics of Object-Oriented Programming](images/image.png)
+![Characteristics of Object-Oriented Programming](DSA_Basics/images/image.png)
 
 *Diagram: characteristics of OOP.*
 
